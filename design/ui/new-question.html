@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">StackOverflow</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Search</a></li>
+        <!-- <li><a href="#">New question</a></li> -->
+        <li class="active"><a href="#">New question</a></li>
+        <!-- <li><a href="#">Page 3</a></li> -->
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <form role="form">
+<div class="form-group">
+  <label for="exampleInputEmail1">Question name:</label>
+  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username">
+</div>
+<label for="comment">Content:</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Tag:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="tag">
+      </div>
+<button type="submit" class="btn btn-default">Create</button>
+<button type="submit" class="btn btn-default">Cancel</button>
+</form>
+  </div>
+</body>
