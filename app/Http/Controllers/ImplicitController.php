@@ -18,7 +18,7 @@ class ImplicitController extends Controller {
    // }
 
    //method injection
-   public function index(\MyClass $myclass)
+   public function index(\MyPersonalClass $myclass)
    {
    	dd($myclass);
    }

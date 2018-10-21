@@ -10,6 +10,6 @@ class TestController extends Controller
 {
     public function index(){
     	// echo "<br>TestController.";
-    	return view('childss');
+    	return view('child');
     }
 }

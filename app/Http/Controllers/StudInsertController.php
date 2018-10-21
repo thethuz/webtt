@@ -6,14 +6,22 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
-class StudInsertController extends Controller
-{
-	public function index(){
-		$users = DB:select('select * from student');
-		return view('stud_view',['usersInView'=>$users])
-		// $users = DB::select('select * from student');
-		// return view('stud_view',['users'=>$users]);
-	}
+class StudInsertController extends Controller {
+   public function insertform(){
+      return view('stud_create');
+   }
+   
+   public function insert(Request $request){
+      $name = $request->input('stud_name');
+      DB::insert('insert into student (name) values(?)',[$name]);
+      echo "Record inserted successfully.<br/>";
+      echo '<a href = "/insert">Click Here</a> to go back.';
+   }
+   public function FuncName(Request $request){
+      
+      // log something to storage/logs/debug.log
+      Log::useDailyFiles(storage_path().'/logs/debug.log');
+      Log::info(['Request'=>$request]);
+   }
 }

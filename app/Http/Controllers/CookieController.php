@@ -25,5 +25,4 @@ class CookieController extends Controller {
 	{
 		return response()->json(['name' => 'Virat Gandhi', 'state' => 'Gujarat']);
 	}
-
 }
