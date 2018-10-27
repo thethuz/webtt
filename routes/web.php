@@ -119,3 +119,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/{id}','UserController@showProfile');
+Route::get('/question/list','QuestionController@showQuestionList');
