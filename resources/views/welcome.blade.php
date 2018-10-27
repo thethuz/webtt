@@ -1,46 +1,88 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ config('app.locale') }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>PHP StackOverflow</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="<?php echo asset('css/login.css')?>" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="css/app.css" rel="stylesheet">
+        <link href="css/custom-style.css" rel="stylesheet">
 
-
-        
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="{{ url('/') }}">PHP - QA</a>
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                      <li>
+                          <a href="{{ url('questions') }}">Questions</a>
+                      </li>
+                      <li>
+                          <a href="{{ url('users') }}">Users</a>
+                      </li>
+                      <li>
+                          <a href="{{ url('login') }}">Login</a>
+                      </li>
+                      <li>
+                          <a href="{{ url('register') }}">Register</a>
+                      </li>
+                  </ul>
+              </div>
+              <!-- /.navbar-collapse -->
+          </div>
+          <!-- /.container -->
+      </nav>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+      <div class="container">
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
+          <!-- Page Heading/Breadcrumbs -->
+          <div class="row">
+              <div class="col-lg-12">
+                  <h1 class="page-header">Newest sss Questions</h1>
+                  {{-- <ol class="breadcrumb">
+                      <li><a href="index.html">Home</a>
+                      </li>
+                      <li class="active">Full Width Page</li>
+                  </ol> --}}
+              </div>
+          </div>
+          <!-- /.row -->
+
+          <!-- Content Row -->
+          <div class="row">
+              <div class="col-lg-12">
+                  <p>Most of Start Bootstrap's unstyled templates can be directly integrated into the Modern Business template. You can view all of our unstyled templates on our website at <a href="http://startbootstrap.com/template-categories/unstyled">http://startbootstrap.com/template-categories/unstyled</a>.</p>
+              </div>
+          </div>
+          <!-- /.row -->
+
+          <hr>
+
+          <!-- Footer -->
+          <footer>
+              <div class="row">
+                  <div class="col-lg-12">
+                      <p>Copyright &copy; Your Website 2014</p>
+                  </div>
+              </div>
+          </footer>
+
+      </div>
+
     </body>
 </html>

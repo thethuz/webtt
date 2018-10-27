@@ -11,7 +11,7 @@
 |
 */
 
-Route::view('/', 'welcome');
+Route::get('/', 'HomeController@index');
 Route::get('/id/{id}', function ($id) {
     echo "ID: " . $id;
 })->name('info');
