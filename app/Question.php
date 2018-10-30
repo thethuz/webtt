@@ -12,11 +12,16 @@ class Question extends Model
 
     public function user()
     {
-        return $this->hasOne('App/User', 'id', 'created_by');
+        return $this->belongsTo('App/User', 'created_by', 'id');
     }
 
-    public function tag()
+    public function tags()
     {
-        return $this->hasMany('App/Tag');
+        return $this->belongsToMany('App/Tag');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App/Answer');
     }
 }
