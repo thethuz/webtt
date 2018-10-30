@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">StackOverflow</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Search</a></li>
+      <!-- <li class="active"><a href="#">Search</a></li> -->
+      <li><a href="#">New question</a></li>
+      <!-- <li><a href="#">Page 3</a></li> -->
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="col-md-2" style="background-color: hsla(89, 43%, 51%, 0.3);"></div>
+      <div class="col-md-8" >
+        <div style="padding: 10px;border: 1px solid #4CAF50;">
+          <div class="text-center"><h4>Tên câu hỏi</h4></div>
+        </div>
+        <hr/>
+        <div class="col-md-12" style="padding: 10px;border: 1px solid #4CAF50;margin-top: 5px;">
+          <div class="col-md-2">Câu trả lời của bạn</div>
+          <div class="col-md-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </div>
+          <div class="col-md-2">11/10/2018</div>
+        </div>
+        <div class="col-md-12" style="padding: 10px;border: 1px solid #4CAF50;margin-top: 5px;">
+          <form role="form">
+            <div class="col-md-2" style="padding: 10px;border: 1px solid #4CAF50;margin-top: 2px;">
+              Thay đổi câu trả lời:
+            </div>
+            <div class="col-md-8" >
+              <textarea class="form-control" rows="2" id="comment" style="padding: 10px;border: 1px solid #4CAF50;margin-top: 2px;">
+              </textarea>
+            </div>
+            <div class="col-md-2" style="padding: 10px;border: 1px ">
+              <button type="submit" class="btn btn-default" style="padding: 10px;border: 1px solid #4CAF50;margin-top: 2px;">
+                <span class="glyphicon glyphicon-pencil" title="Update"></span>
+              </button>
+              <button type="submit" class="btn btn-default" style="padding: 10px;border: 1px solid #4CAF50;margin-top: 2px;">
+                <span class="glyphicon glyphicon-trash" title="Remove"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-2" style="background-color: hsla(89, 43%, 51%, 0.3);"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
