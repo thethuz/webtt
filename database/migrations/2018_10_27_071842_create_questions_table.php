@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('views')->default(0);
             $table->integer('status');
             $table->integer('created_by');
-            $table->timestamp();
+            $table->timestamps();
         });
     }
 
