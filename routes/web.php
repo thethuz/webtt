@@ -30,11 +30,6 @@ Route::get('/terminate', [
     'uses' => 'ABCController@index'
 ]);
 
-// Route::get('/login',function(){
-// 	return view('login');
-// });
-
-
 Route::get('profile', ['middleware' => 'auth',
     'uses' => 'UserController@showPath'
 ]);
@@ -119,4 +114,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/{id}','UserController@showProfile');
-Route::get('/question/list','QuestionController@showQuestionList');
+Route::get('/questions/list','QuestionController@showQuestionList');
+Route::get('/questions/ask','QuestionController@showAsk');
+Route::post('/questions/ask','QuestionController@ask')->name('questions.ask');
+Route::get('/questions/{id}/{slug}', 'QuestionController@showQuestionDetail');
