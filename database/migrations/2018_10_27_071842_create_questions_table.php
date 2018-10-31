@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('views')->default(0);
             $table->integer('status')->comment('0 - deleted, 1 - active, 2 - duplicate');
             $table->integer('created_by');
-            $table->timestamp();
+            $table->timestamps();
         });
     }
 
