@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagTable extends Migration
+class CreateUserVoteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('user_vote', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('question_id');
+            $table->integer('vote_category')->comment('0 - question, 1 - answer, 2 - comment');;
+            $table->integer('vote_type')->comment('1 - upvote, 0 - downvote');;
+            $table->integer('vote_id');
+            $table->integer('vote_by');         
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('user_vote');
     }
 }
