@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/custom-style.css') }}" rel="stylesheet">
-  @yield('css')  
+  @yield('css')
 
 </head>
 <body>
@@ -52,17 +52,17 @@
               <a href="{{ url('register') }}">Register</a>
             </li>
           @endif
-          
+
         </ul>
       </div>
       <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-  </nav>  
+  </nav>
 
   <div class="container">
 
-    @yield('content')    
+    @yield('content')
 
     <hr>
 
@@ -70,7 +70,7 @@
     <footer>
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright &copy; Your Website 2017</p>
+          <p>2018</p>
         </div>
       </div>
     </footer>
@@ -81,4 +81,3 @@
   @yield('script')
 </body>
 </html>
-
