@@ -119,7 +119,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user/{id}','UserController@showProfile');
-Route::get('/question/list','QuestionController@showQuestionList');
+Route::get('/question/list','QuestionsController@showQuestionList');
 
 Route::group(['prefix' => 'api/v1'], function () {
     Route::resource('questions', 'QuestionsController');

@@ -15,7 +15,7 @@ use Auth;
 use Response;
 use DB;
 
-class QuestionController extends Controller
+class QuestionsController extends Controller
 {
     /**
      * Create a new controller instance.
