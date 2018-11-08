@@ -29,8 +29,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-lg-8 left-side" id="app">
-                <question-detail question_id = "{{ $question->id }}"></question-detail>
-
+                <question-detail question_id = "1"></question-detail>
                 @if (Auth::check())
                     <div class="row post-answer">
                         <form method="POST" action="{{ route('questions.answer') }}">
