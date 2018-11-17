@@ -59,7 +59,7 @@ class QuestionsController extends Controller
 
     	return redirect($question_url);
     }
-
+    //TODO
     public function answer()
     {
 
@@ -77,7 +77,7 @@ class QuestionsController extends Controller
 
       return redirect($question_url);
     }
-
+    //TODO
     public function comment()
     {
 
@@ -236,6 +236,7 @@ class QuestionsController extends Controller
 
     }
 
+    //TODO
     public function editAnswer() {
       $id = Input::get('id');
 
