@@ -118,8 +118,8 @@ Route::get('/facadeex', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/user/{id}','UserController@showProfile');
-Route::get('/question/list','QuestionsController@showQuestionList');
+Route::get('/users/{id}','UserController@showProfile');
+Route::get('/questions/list','QuestionsController@showQuestionList');
 
 Route::group(['prefix' => 'api/v1'], function () {
     Route::resource('questions', 'QuestionsController');
@@ -137,7 +137,3 @@ Route::get('/questions/ask', 'QuestionsController@showAsk');
 Route::post('/questions/ask', 'QuestionsController@ask')->name('questions.ask');
 Route::post('/questions/answer', 'QuestionController@answer')->name('questions.answer');
 Route::get('/questions/{id}/{slug}', 'QuestionsController@showQuestionDetail');
-
-// Route::resource('questions', 'QuestionsController');
-// Route::resource('answers', 'AnswersController');
-// Route::resource('tags', 'TagsController');
