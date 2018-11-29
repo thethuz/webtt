@@ -95,7 +95,8 @@ class QuestionsController extends Controller
 
     }
 
-    public function getQuestionById($id)
+    // question/{{id}}
+    public function show($id)
     {
         $question = Question::find($id);
         $question->asked_user = ($question->user)['name'];

@@ -51,7 +51,7 @@ class AnswersController extends Controller
        $answer->created_by = Auth::user()->id;
        $answer->save();
 
-       return Response::json(['status' => true, 'answer' => $answer
+       return Response::json(['status' => true, 'answer' => $answer]);
      }
 
     /**
@@ -60,7 +60,7 @@ class AnswersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function getAnswersById($questionId){
+     public function show($questionId){
 
        $answers = Answer::with(array('children'=>function($query){
                      $query
