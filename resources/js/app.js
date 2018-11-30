@@ -15,8 +15,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('question-detail', require('./components/question_detail.vue'));
-const app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app' //bind the instance to the element have id is app
+// });

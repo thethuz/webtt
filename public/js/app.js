@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 166);
+/******/ 	return __webpack_require__(__webpack_require__.s = 169);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1905,7 +1905,7 @@
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__(159)("./" + name);
+                __webpack_require__(161)("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -4577,7 +4577,7 @@
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(133)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(134)(module)))
 
 /***/ }),
 /* 1 */
@@ -4920,7 +4920,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(1);
-var normalizeHeaderName = __webpack_require__(151);
+var normalizeHeaderName = __webpack_require__(152);
 
 var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 var DEFAULT_CONTENT_TYPE = {
@@ -5021,12 +5021,12 @@ module.exports = defaults;
 
 
 var utils = __webpack_require__(1);
-var settle = __webpack_require__(143);
-var buildURL = __webpack_require__(146);
-var parseHeaders = __webpack_require__(152);
-var isURLSameOrigin = __webpack_require__(150);
+var settle = __webpack_require__(144);
+var buildURL = __webpack_require__(147);
+var parseHeaders = __webpack_require__(153);
+var isURLSameOrigin = __webpack_require__(151);
 var createError = __webpack_require__(7);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(145);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(146);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -5122,7 +5122,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(148);
+      var cookies = __webpack_require__(149);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -5242,7 +5242,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(142);
+var enhanceError = __webpack_require__(143);
 
 /**
  * Create an Error with the specified message, config, error code, and response.
@@ -17316,6 +17316,63 @@ process.umask = function() { return 0; };
 /* 133 */
 /***/ (function(module, exports) {
 
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = Object.create(options.computed || null)
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+    options.computed = computed
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports) {
+
 module.exports = function(module) {
 	if(!module.webpackPolyfill) {
 		module.deprecate = function() {};
@@ -17341,7 +17398,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -17351,9 +17408,9 @@ module.exports = function(module) {
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(155);
+__webpack_require__(157);
 
-window.Vue = __webpack_require__(165);
+window.Vue = __webpack_require__(168);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -17361,26 +17418,26 @@ window.Vue = __webpack_require__(165);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(162));
-Vue.component('question-detail', __webpack_require__(181));
-var app = new Vue({
-  el: '#app'
-});
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('question-detail', __webpack_require__(165));
+// const app = new Vue({
+//     el: '#app' //bind the instance to the element have id is app
+// });
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(137);
+module.exports = __webpack_require__(138);
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17388,7 +17445,7 @@ module.exports = __webpack_require__(137);
 
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(8);
-var Axios = __webpack_require__(139);
+var Axios = __webpack_require__(140);
 var defaults = __webpack_require__(3);
 
 /**
@@ -17423,14 +17480,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(5);
-axios.CancelToken = __webpack_require__(138);
+axios.CancelToken = __webpack_require__(139);
 axios.isCancel = __webpack_require__(6);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(153);
+axios.spread = __webpack_require__(154);
 
 module.exports = axios;
 
@@ -17439,7 +17496,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17503,7 +17560,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17511,10 +17568,10 @@ module.exports = CancelToken;
 
 var defaults = __webpack_require__(3);
 var utils = __webpack_require__(1);
-var InterceptorManager = __webpack_require__(140);
-var dispatchRequest = __webpack_require__(141);
-var isAbsoluteURL = __webpack_require__(149);
-var combineURLs = __webpack_require__(147);
+var InterceptorManager = __webpack_require__(141);
+var dispatchRequest = __webpack_require__(142);
+var isAbsoluteURL = __webpack_require__(150);
+var combineURLs = __webpack_require__(148);
 
 /**
  * Create a new instance of Axios
@@ -17595,7 +17652,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17654,14 +17711,14 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var transformData = __webpack_require__(144);
+var transformData = __webpack_require__(145);
 var isCancel = __webpack_require__(6);
 var defaults = __webpack_require__(3);
 
@@ -17740,7 +17797,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17766,7 +17823,7 @@ module.exports = function enhanceError(error, config, code, response) {
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17798,7 +17855,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17825,7 +17882,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17868,7 +17925,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17943,7 +18000,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17962,7 +18019,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18022,7 +18079,7 @@ module.exports = (
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18043,7 +18100,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18118,7 +18175,7 @@ module.exports = (
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18137,7 +18194,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18181,7 +18238,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18215,7 +18272,8 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 154 */
+/* 155 */,
+/* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18236,19 +18294,267 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            question: [],
+            answers: [],
+            isActive: 'red',
+            constants: [],
+            isAuthenticated: false,
+            userId: 0
+        };
+    },
     mounted: function mounted() {
-        console.log('Component mounted.');
-    }
+        this.fetchQuestionData();
+        this.fetchAnswers();
+        this.fetchConstants();
+        this.checkAuthenticated();
+    },
+
+    methods: {
+        fetchConstants: function fetchConstants() {
+            var _this = this;
+
+            axios.get('/api/get_constant/').then(function (res) {
+                _this.constants = res.data;
+            });
+        },
+        checkAuthenticated: function checkAuthenticated() {
+            var _this2 = this;
+
+            axios.get('/user/isAuthenticated/').then(function (res) {
+                _this2.isAuthenticated = res.data;
+                if (_this2.isAuthenticated) {
+                    _this2.getCurrentUserId();
+                }
+            });
+        },
+        getCurrentUserId: function getCurrentUserId() {
+            var _this3 = this;
+
+            axios.get('/user/getCurrentUserId/').then(function (res) {
+                _this3.userId = res.data;
+            });
+        },
+        fetchQuestionData: function fetchQuestionData() {
+            var _this4 = this;
+
+            axios.get('/api/v1/questions/' + this.question_id).then(function (res) {
+                _this4.question = res.data;
+                // console.log(question);
+            });
+        },
+        fetchAnswers: function fetchAnswers() {
+            var _this5 = this;
+
+            axios.get('/api/v1/answers/' + this.question_id).then(function (res) {
+
+                res.data.map(function (value, key) {
+                    value.showAddComment = false;
+                });
+
+                _this5.answers = res.data;
+            });
+        },
+        resetUpVoteDownVote: function resetUpVoteDownVote() {
+            this.question.down_voted = false;
+            this.question.up_voted = false;
+        },
+
+        showComment: function showComment(answer) {
+            answer.showAddComment = true;
+        },
+        doneComment: function doneComment(answer) {
+            var _this6 = this;
+
+            axios.post('/questions/comment', {
+                answer_id: answer.id,
+                content: answer.new_comment
+            }).then(function (res) {
+                if (res.data.status) {
+                    _this6.fetchAnswers();
+                }
+            });
+        },
+        voteQuestion: function voteQuestion(vote_id, vote_type) {
+            var _this7 = this;
+
+            if (this.userId == this.question.asked_user_id) {
+                alert("Can't vote your own post");
+                return;
+            }
+
+            axios.post('/vote_action', {
+                vote_id: vote_id,
+                vote_type: vote_type,
+                vote_category: this.constants.vote_category.QUESTION
+            }).then(function (res) {
+                if (res.data.status) {
+
+                    _this7.question.votes = res.data.votes;
+                    _this7.question.up_voted = res.data.up_voted;
+                    _this7.question.down_voted = res.data.down_voted;
+                }
+            }).catch(function (err) {
+                if (err.response.status == 401) {
+                    alert("You must login before using this function");
+                }
+            });
+        },
+        acceptAnswer: function acceptAnswer(answer_id, index) {
+            var _this8 = this;
+
+            axios.post('/accept_answer', {
+                answer_id: answer_id,
+                question_id: this.question.id
+            }).then(function (res) {
+                if (res.data.status) {
+
+                    _this8.answers.map(function (value, key) {
+                        value.accepted = false;
+                    });
+                    _this8.answers[index].accepted = true;
+                }
+            }).catch(function (err) {
+                if (err.response.status == 401) {
+                    alert("You must login before using this function");
+                }
+            });
+        },
+        voteAnswer: function voteAnswer(vote_id, vote_type, index) {
+            var _this9 = this;
+
+            if (this.userId == this.answers[index].user.id) {
+                alert("Can't vote your own post");
+                return;
+            }
+            axios.post('/vote_action', {
+                vote_id: vote_id,
+                vote_type: vote_type,
+                vote_category: this.constants.vote_category.ANSWER
+            }).then(function (res) {
+                if (res.data.status) {
+                    _this9.answers[index].votes = res.data.votes;
+                    _this9.answers[index].up_voted = res.data.up_voted;
+                    _this9.answers[index].down_voted = res.data.down_voted;
+                }
+            }).catch(function (err) {
+                if (err.response.status == 401) {
+                    alert("You must login before using this function");
+                }
+            });
+        }
+    },
+    props: ['question_id']
 });
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(158);
+window._ = __webpack_require__(160);
 
 moment = __webpack_require__(0);
 
@@ -18259,9 +18565,9 @@ moment = __webpack_require__(0);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(157);
+  window.$ = window.jQuery = __webpack_require__(159);
 
-  __webpack_require__(156);
+  __webpack_require__(158);
 } catch (e) {}
 
 /**
@@ -18270,7 +18576,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(136);
+window.axios = __webpack_require__(137);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -18304,7 +18610,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports) {
 
 /*!
@@ -20687,7 +20993,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -31058,7 +31364,7 @@ return jQuery;
 
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -48170,10 +48476,10 @@ return jQuery;
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(133)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(134)(module)))
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -48438,10 +48744,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 159;
+webpackContext.id = 161;
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -48634,7 +48940,7 @@ webpackContext.id = 159;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(132)))
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -48690,7 +48996,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(160);
+__webpack_require__(162);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -48704,22 +49010,23 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 162 */
+/* 164 */,
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Component = __webpack_require__(163)(
+var Component = __webpack_require__(133)(
   /* script */
-  __webpack_require__(154),
+  __webpack_require__(156),
   /* template */
-  __webpack_require__(164),
+  __webpack_require__(166),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/nguyennam/Personal/University/CNWEB/webtt/resources/js/components/ExampleComponent.vue"
+Component.options.__file = "/Users/nguyennam/Personal/University/CNWEB/webtt/resources/js/components/question_detail.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ExampleComponent.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] question_detail.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -48728,9 +49035,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d4c2870e", Component.options)
+    hotAPI.createRecord("data-v-043afa14", Component.options)
   } else {
-    hotAPI.reload("data-v-d4c2870e", Component.options)
+    hotAPI.reload("data-v-043afa14", Component.options)
   }
 })()}
 
@@ -48738,93 +49045,249 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 163 */
-/***/ (function(module, exports) {
-
-// this module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  scopeId,
-  cssModules
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  // inject cssModules
-  if (cssModules) {
-    var computed = Object.create(options.computed || null)
-    Object.keys(cssModules).forEach(function (key) {
-      var module = cssModules[key]
-      computed[key] = function () { return module }
-    })
-    options.computed = computed
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
+  return _c('div', [_c('div', {
+    staticClass: "row question-info"
   }, [_c('div', {
-    staticClass: "row justify-content-center"
+    staticClass: "col-lg-2"
+  }, [_c('p', {
+    staticClass: "text-grey",
+    on: {
+      "click": function($event) {
+        _vm.voteQuestion(_vm.question.id, _vm.constants.vote_type.UP_VOTE)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-sort-asc fa-3x",
+    class: {
+      voted: _vm.question.up_voted
+    }
+  })]), _vm._v(" "), _c('h3', {
+    staticClass: "text-grey"
+  }, [_vm._v(_vm._s(_vm.question.votes))]), _vm._v(" "), _c('p', {
+    staticClass: "text-grey",
+    on: {
+      "click": function($event) {
+        _vm.voteQuestion(_vm.question.id, _vm.constants.vote_type.DOWN_VOTE)
+      }
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-sort-desc fa-3x",
+    class: {
+      voted: _vm.question.down_voted
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "col-lg-10"
+  }, [_c('div', [_vm._v(_vm._s(_vm.question.content))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
+    staticClass: "tag-list"
+  }, _vm._l((_vm.question.tags), function(tag) {
+    return _c('a', {
+      staticClass: "item",
+      attrs: {
+        "href": '/tag/' + tag.name
+      }
+    }, [_vm._v("\n                    " + _vm._s(tag.name) + "\n                ")])
+  })), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', [_c('a', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.userId == _vm.question.asked_user_id),
+      expression: "userId == question.asked_user_id"
+    }],
+    staticClass: "text-brown",
+    attrs: {
+      "href": '/question/' + _vm.question.id + '/edit'
+    }
+  }, [_vm._v("edit")])]), _vm._v(" "), _c('div', {
+    staticClass: "question-author-info pull-right"
+  }, [_c('p', [_vm._v("asked " + _vm._s(_vm.question.formatted_created_at))]), _vm._v(" "), _c('img', {
+    attrs: {
+      "width": "60px",
+      "height": "60px",
+      "src": _vm.question.asked_user_avatar
+    }
+  }), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": '/user/' + _vm.question.asked_user_id + '/view'
+    }
+  }, [_vm._v("  " + _vm._s(_vm.question.asked_user))])])])]), _vm._v(" "), _c('div', {
+    staticClass: "row answers-count"
   }, [_c('div', {
-    staticClass: "col-md-8"
+    staticClass: "col-lg-12"
+  }, [_c('h3', [_vm._v(_vm._s(_vm.answers.length) + " answers")])])]), _vm._v(" "), _c('div', {
+    staticClass: "row"
   }, [_c('div', {
-    staticClass: "card card-default"
-  }, [_c('div', {
-    staticClass: "card-header"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "card-body"
-  }, [_vm._v("\n                    I'm an example component.\n                ")])])])])])
-}]}
+    staticClass: "col-lg-12 answers-info"
+  }, _vm._l((_vm.answers), function(answer, index) {
+    return _c('div', [_c('div', {
+      staticClass: "row"
+    }, [_c('div', {
+      staticClass: "col-lg-2 col-md-2 col-sm-6"
+    }, [_c('p', {
+      staticClass: "text-grey",
+      on: {
+        "click": function($event) {
+          _vm.voteAnswer(answer.id, _vm.constants.vote_type.UP_VOTE, index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-sort-asc fa-3x",
+      class: {
+        voted: answer.up_voted
+      }
+    })]), _vm._v(" "), _c('h3', {
+      staticClass: "text-grey"
+    }, [_vm._v(_vm._s(answer.votes))]), _vm._v(" "), _c('p', {
+      staticClass: "text-grey",
+      on: {
+        "click": function($event) {
+          _vm.voteAnswer(answer.id, _vm.constants.vote_type.DOWN_VOTE, index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-sort-desc fa-3x",
+      class: {
+        voted: answer.down_voted
+      }
+    })]), _vm._v(" "), _c('p', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.userId == _vm.question.asked_user_id),
+        expression: "userId == question.asked_user_id"
+      }],
+      staticClass: "text-grey",
+      on: {
+        "click": function($event) {
+          _vm.acceptAnswer(answer.id, index)
+        }
+      }
+    }, [_c('i', {
+      staticClass: "fa fa-check fa-2x",
+      class: {
+        accepted: answer.accepted
+      }
+    })]), _vm._v(" "), _c('p', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (answer.accepted && !_vm.isAuthenticated),
+        expression: "answer.accepted && !isAuthenticated"
+      }],
+      staticClass: "text-grey"
+    }, [_c('i', {
+      staticClass: "fa fa-check fa-2x accepted"
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "col-lg-10 col-md-10 col-sm-6"
+    }, [_c('div', {
+      domProps: {
+        "innerHTML": _vm._s(answer.content)
+      }
+    })])]), _vm._v(" "), _c('div', {
+      staticClass: "row"
+    }, [_c('div', {
+      staticClass: "col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6"
+    }, [_c('a', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (_vm.userId == answer.user.id),
+        expression: "userId == answer.user.id"
+      }],
+      staticClass: "text-brown",
+      attrs: {
+        "href": '/answer/' + answer.id + '/edit'
+      }
+    }, [_vm._v("edit")])]), _vm._v(" "), _c('div', {
+      staticClass: "col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6 answer-author-info"
+    }, [_c('p', [_vm._v("answered " + _vm._s(answer.formatted_created_at))]), _vm._v(" "), _c('img', {
+      attrs: {
+        "width": "60px",
+        "height": "60px",
+        "src": '/uploads/avatars/' + answer.user.avatar
+      }
+    }), _vm._v(" "), _c('a', {
+      attrs: {
+        "href": '/user/' + answer.user.id + '/view'
+      }
+    }, [_vm._v("  " + _vm._s(answer.user.name))])])]), _vm._v(" "), _vm._l((answer.children), function(comment) {
+      return _c('div', {
+        staticClass: "row comments"
+      }, [_c('div', {
+        staticClass: "col-lg-offset-2 col-lg-10"
+      }, [_c('p', [_vm._v(_vm._s(comment.content) + "\n                            - "), _c('a', {
+        staticClass: "commented-by",
+        attrs: {
+          "href": '/user/' + comment.user.id + '/view'
+        }
+      }, [_vm._v("  " + _vm._s(comment.user.name))]), _vm._v(" "), _c('span', {
+        staticClass: "commented-at"
+      }, [_vm._v(_vm._s(comment.created_at))])])])])
+    }), _vm._v(" "), _c('div', {
+      staticClass: "row"
+    }, [_c('div', {
+      staticClass: "col-lg-offset-2 col-lg-10 add-a-comment"
+    }, [_c('p', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!answer.showAddComment && _vm.isAuthenticated),
+        expression: "!answer.showAddComment && isAuthenticated"
+      }],
+      on: {
+        "click": function($event) {
+          _vm.showComment(answer)
+        }
+      }
+    }, [_vm._v("add a comment")]), _vm._v(" "), _c('div', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (answer.showAddComment),
+        expression: "answer.showAddComment"
+      }]
+    }, [_c('br'), _vm._v(" "), _c('textarea', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (answer.new_comment),
+        expression: "answer.new_comment"
+      }],
+      staticStyle: {
+        "width": "100%"
+      },
+      domProps: {
+        "value": (answer.new_comment)
+      },
+      on: {
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          _vm.$set(answer, "new_comment", $event.target.value)
+        }
+      }
+    }), _vm._v(" "), _c('a', {
+      on: {
+        "click": function($event) {
+          _vm.doneComment(answer)
+        }
+      }
+    }, [_vm._v("Add Comment")])])])]), _vm._v(" "), _c('br')], 2)
+  }))])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-d4c2870e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-043afa14", module.exports)
   }
 }
 
 /***/ }),
-/* 165 */
+/* 167 */,
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59787,579 +60250,15 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(161).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(163).setImmediate))
 
 /***/ }),
-/* 166 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(134);
-module.exports = __webpack_require__(135);
+__webpack_require__(135);
+module.exports = __webpack_require__(136);
 
-
-/***/ }),
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            question: [],
-            answers: [],
-            isActive: 'red',
-            constants: [],
-            isAuthenticated: false,
-            userId: 0
-        };
-    },
-    created: function created() {
-        this.fetchQuestionData();
-        this.fetchAnswers();
-        this.fetchConstants();
-        this.checkAuthenticated();
-    },
-
-    methods: {
-        fetchConstants: function fetchConstants() {
-            var _this = this;
-
-            axios.get('/api/get_constant/').then(function (res) {
-                _this.constants = res.data;
-            });
-        },
-        checkAuthenticated: function checkAuthenticated() {
-            var _this2 = this;
-
-            axios.get('/user/isAuthenticated/').then(function (res) {
-                _this2.isAuthenticated = res.data;
-                if (_this2.isAuthenticated) {
-                    _this2.getCurrentUserId();
-                }
-            });
-        },
-        getCurrentUserId: function getCurrentUserId() {
-            var _this3 = this;
-
-            axios.get('/user/getCurrentUserId/').then(function (res) {
-                _this3.userId = res.data;
-            });
-        },
-        fetchQuestionData: function fetchQuestionData() {
-            var _this4 = this;
-
-            axios.get('/question/' + this.question_id).then(function (res) {
-                _this4.question = res.data;
-            });
-        },
-        fetchAnswers: function fetchAnswers() {
-            var _this5 = this;
-
-            axios.get('/answers/' + this.question_id).then(function (res) {
-
-                res.data.map(function (value, key) {
-                    value.showAddComment = false;
-                });
-
-                _this5.answers = res.data;
-            });
-        },
-        resetUpVoteDownVote: function resetUpVoteDownVote() {
-            this.question.down_voted = false;
-            this.question.up_voted = false;
-        },
-
-        showComment: function showComment(answer) {
-            answer.showAddComment = true;
-        },
-        doneComment: function doneComment(answer) {
-            var _this6 = this;
-
-            axios.post('/questions/comment', {
-                answer_id: answer.id,
-                content: answer.new_comment
-            }).then(function (res) {
-                if (res.data.status) {
-                    _this6.fetchAnswers();
-                }
-            });
-        },
-        voteQuestion: function voteQuestion(vote_id, vote_type) {
-            var _this7 = this;
-
-            if (this.userId == this.question.asked_user_id) {
-                alert("Can't vote your own post");
-                return;
-            }
-
-            axios.post('/vote_action', {
-                vote_id: vote_id,
-                vote_type: vote_type,
-                vote_category: this.constants.vote_category.QUESTION
-            }).then(function (res) {
-                if (res.data.status) {
-
-                    _this7.question.votes = res.data.votes;
-                    _this7.question.up_voted = res.data.up_voted;
-                    _this7.question.down_voted = res.data.down_voted;
-                }
-            }).catch(function (err) {
-                if (err.response.status == 401) {
-                    alert("You must login before using this function");
-                }
-            });
-        },
-        acceptAnswer: function acceptAnswer(answer_id, index) {
-            var _this8 = this;
-
-            axios.post('/accept_answer', {
-                answer_id: answer_id,
-                question_id: this.question.id
-            }).then(function (res) {
-                if (res.data.status) {
-
-                    _this8.answers.map(function (value, key) {
-                        value.accepted = false;
-                    });
-                    _this8.answers[index].accepted = true;
-                }
-            }).catch(function (err) {
-                if (err.response.status == 401) {
-                    alert("You must login before using this function");
-                }
-            });
-        },
-        voteAnswer: function voteAnswer(vote_id, vote_type, index) {
-            var _this9 = this;
-
-            if (this.userId == this.answers[index].user.id) {
-                alert("Can't vote your own post");
-                return;
-            }
-            axios.post('/vote_action', {
-                vote_id: vote_id,
-                vote_type: vote_type,
-                vote_category: this.constants.vote_category.ANSWER
-            }).then(function (res) {
-                if (res.data.status) {
-                    _this9.answers[index].votes = res.data.votes;
-                    _this9.answers[index].up_voted = res.data.up_voted;
-                    _this9.answers[index].down_voted = res.data.down_voted;
-                }
-            }).catch(function (err) {
-                if (err.response.status == 401) {
-                    alert("You must login before using this function");
-                }
-            });
-        }
-    },
-    props: ['question_id']
-});
-
-/***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(163)(
-  /* script */
-  __webpack_require__(180),
-  /* template */
-  __webpack_require__(182),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/nguyennam/Personal/University/CNWEB/webtt/resources/js/components/question_detail.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] question_detail.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-043afa14", Component.options)
-  } else {
-    hotAPI.reload("data-v-043afa14", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 182 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "row question-info"
-  }, [_c('div', {
-    staticClass: "col-lg-2"
-  }, [_c('p', {
-    staticClass: "text-grey",
-    on: {
-      "click": function($event) {
-        _vm.voteQuestion(_vm.question.id, _vm.constants.vote_type.UP_VOTE)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-sort-asc fa-3x",
-    class: {
-      voted: _vm.question.up_voted
-    }
-  })]), _vm._v(" "), _c('h3', {
-    staticClass: "text-grey"
-  }, [_vm._v(_vm._s(_vm.question.votes))]), _vm._v(" "), _c('p', {
-    staticClass: "text-grey",
-    on: {
-      "click": function($event) {
-        _vm.voteQuestion(_vm.question.id, _vm.constants.vote_type.DOWN_VOTE)
-      }
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-sort-desc fa-3x",
-    class: {
-      voted: _vm.question.down_voted
-    }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "col-lg-10"
-  }, [_c('div', [_vm._v(_vm._s(_vm.question.content))]), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', {
-    staticClass: "tag-list"
-  }, _vm._l((_vm.question.tags), function(tag) {
-    return _c('a', {
-      staticClass: "item",
-      attrs: {
-        "href": '/tag/' + tag.name
-      }
-    }, [_vm._v("\n                    " + _vm._s(tag.name) + "\n                ")])
-  })), _vm._v(" "), _c('br'), _vm._v(" "), _c('div', [_c('a', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.userId == _vm.question.asked_user_id),
-      expression: "userId == question.asked_user_id"
-    }],
-    staticClass: "text-brown",
-    attrs: {
-      "href": '/question/' + _vm.question.id + '/edit'
-    }
-  }, [_vm._v("edit")])]), _vm._v(" "), _c('div', {
-    staticClass: "question-author-info pull-right"
-  }, [_c('p', [_vm._v("asked " + _vm._s(_vm.question.formatted_created_at))]), _vm._v(" "), _c('img', {
-    attrs: {
-      "width": "60px",
-      "height": "60px",
-      "src": _vm.question.asked_user_avatar
-    }
-  }), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": '/user/' + _vm.question.asked_user_id + '/view'
-    }
-  }, [_vm._v("  " + _vm._s(_vm.question.asked_user))])])])]), _vm._v(" "), _c('div', {
-    staticClass: "row answers-count"
-  }, [_c('div', {
-    staticClass: "col-lg-12"
-  }, [_c('h3', [_vm._v(_vm._s(_vm.answers.length) + " answers")])])]), _vm._v(" "), _c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-lg-12 answers-info"
-  }, _vm._l((_vm.answers), function(answer, index) {
-    return _c('div', [_c('div', {
-      staticClass: "row"
-    }, [_c('div', {
-      staticClass: "col-lg-2 col-md-2 col-sm-6"
-    }, [_c('p', {
-      staticClass: "text-grey",
-      on: {
-        "click": function($event) {
-          _vm.voteAnswer(answer.id, _vm.constants.vote_type.UP_VOTE, index)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-sort-asc fa-3x",
-      class: {
-        voted: answer.up_voted
-      }
-    })]), _vm._v(" "), _c('h3', {
-      staticClass: "text-grey"
-    }, [_vm._v(_vm._s(answer.votes))]), _vm._v(" "), _c('p', {
-      staticClass: "text-grey",
-      on: {
-        "click": function($event) {
-          _vm.voteAnswer(answer.id, _vm.constants.vote_type.DOWN_VOTE, index)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-sort-desc fa-3x",
-      class: {
-        voted: answer.down_voted
-      }
-    })]), _vm._v(" "), _c('p', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.userId == _vm.question.asked_user_id),
-        expression: "userId == question.asked_user_id"
-      }],
-      staticClass: "text-grey",
-      on: {
-        "click": function($event) {
-          _vm.acceptAnswer(answer.id, index)
-        }
-      }
-    }, [_c('i', {
-      staticClass: "fa fa-check fa-2x",
-      class: {
-        accepted: answer.accepted
-      }
-    })]), _vm._v(" "), _c('p', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (answer.accepted && !_vm.isAuthenticated),
-        expression: "answer.accepted && !isAuthenticated"
-      }],
-      staticClass: "text-grey"
-    }, [_c('i', {
-      staticClass: "fa fa-check fa-2x accepted"
-    })])]), _vm._v(" "), _c('div', {
-      staticClass: "col-lg-10 col-md-10 col-sm-6"
-    }, [_c('div', {
-      domProps: {
-        "innerHTML": _vm._s(answer.content)
-      }
-    })])]), _vm._v(" "), _c('div', {
-      staticClass: "row"
-    }, [_c('div', {
-      staticClass: "col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6"
-    }, [_c('a', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (_vm.userId == answer.user.id),
-        expression: "userId == answer.user.id"
-      }],
-      staticClass: "text-brown",
-      attrs: {
-        "href": '/answer/' + answer.id + '/edit'
-      }
-    }, [_vm._v("edit")])]), _vm._v(" "), _c('div', {
-      staticClass: "col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-6 answer-author-info"
-    }, [_c('p', [_vm._v("answered " + _vm._s(answer.formatted_created_at))]), _vm._v(" "), _c('img', {
-      attrs: {
-        "width": "60px",
-        "height": "60px",
-        "src": '/uploads/avatars/' + answer.user.avatar
-      }
-    }), _vm._v(" "), _c('a', {
-      attrs: {
-        "href": '/user/' + answer.user.id + '/view'
-      }
-    }, [_vm._v("  " + _vm._s(answer.user.name))])])]), _vm._v(" "), _vm._l((answer.children), function(comment) {
-      return _c('div', {
-        staticClass: "row comments"
-      }, [_c('div', {
-        staticClass: "col-lg-offset-2 col-lg-10"
-      }, [_c('p', [_vm._v(_vm._s(comment.content) + " \n                            - "), _c('a', {
-        staticClass: "commented-by",
-        attrs: {
-          "href": '/user/' + comment.user.id + '/view'
-        }
-      }, [_vm._v("  " + _vm._s(comment.user.name))]), _vm._v(" "), _c('span', {
-        staticClass: "commented-at"
-      }, [_vm._v(_vm._s(comment.created_at))])])])])
-    }), _vm._v(" "), _c('div', {
-      staticClass: "row"
-    }, [_c('div', {
-      staticClass: "col-lg-offset-2 col-lg-10 add-a-comment"
-    }, [_c('p', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (!answer.showAddComment && _vm.isAuthenticated),
-        expression: "!answer.showAddComment && isAuthenticated"
-      }],
-      on: {
-        "click": function($event) {
-          _vm.showComment(answer)
-        }
-      }
-    }, [_vm._v("add a comment")]), _vm._v(" "), _c('div', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: (answer.showAddComment),
-        expression: "answer.showAddComment"
-      }]
-    }, [_c('br'), _vm._v(" "), _c('textarea', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (answer.new_comment),
-        expression: "answer.new_comment"
-      }],
-      staticStyle: {
-        "width": "100%"
-      },
-      domProps: {
-        "value": (answer.new_comment)
-      },
-      on: {
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          _vm.$set(answer, "new_comment", $event.target.value)
-        }
-      }
-    }), _vm._v(" "), _c('a', {
-      on: {
-        "click": function($event) {
-          _vm.doneComment(answer)
-        }
-      }
-    }, [_vm._v("Add Comment")])])])]), _vm._v(" "), _c('br')], 2)
-  }))])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-043afa14", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

@@ -93,50 +93,32 @@ Route::get('session/get', 'SessionController@accessSessionData');
 Route::get('session/set', 'SessionController@storeSessionData');
 Route::get('session/remove', 'SessionController@deleteSessionData');
 
-Route::get('/validation', 'ValidationController@showform');
-Route::post('/validation', 'ValidationController@validateform');
-
-Route::get('/uploadfile', 'UploadFileController@index');
-Route::post('/uploadfile', 'UploadFileController@showUploadFile');
-
-//Email
-Route::get('sendbasicemail', 'MailController@basic_email');
-Route::get('sendhtmlemail', 'MailController@html_email');
-Route::get('sendattachmentemail', 'MailController@attachment_email');
-
 //Ajax
 Route::get('ajax', function () {
     return view('message');
-});
-Route::get('/getmsg', 'AjaxController@index');
-
-
-Route::get('/facadeex', function () {
-    return TestFacades::testingFacades();
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/{id}','UserController@showProfile');
+
+//Routes for questions
 Route::get('/questions/list','QuestionsController@showQuestionList');
-
-Route::group(['prefix' => 'api/v1'], function () {
-    Route::resource('questions', 'QuestionsController');
-});
-
-Route::group(['prefix' => 'api/v1'], function () {
-    Route::resource('answers', 'AnswersController');
-});
-
-Route::group(['prefix' => 'api/v1'], function () {
-    Route::resource('tags', 'TagsController');
-});
-
 Route::get('/questions/ask', 'QuestionsController@showAsk');
 Route::post('/questions/ask', 'QuestionsController@ask')->name('questions.ask');
 Route::post('/questions/answer', 'QuestionController@answer')->name('questions.answer');
 Route::get('/questions/{id}/{slug}', 'QuestionsController@showQuestionDetail');
 
+//Update data
 Route::post('/user/upload_avatar', 'UserController@uploadAvatar');
 Route::post('/user/update_profile', 'UserController@updateProfile');
+
+// Achieve constant have config data
+Route::get('/api/get_constant','ConstantAPIController@get');
+Route::get('/user/isAuthenticated', 'UserController@isAuthenticated');
+Route::get('/user/getCurrentUserId','UserController@getCurrentUserId');
+
+Route::get('/tag/{tag}','QuestionsController@showQuestionByTag');
+Route::post('/vote_action', 'QuestionsController@voteAction')->middleware('auth');
+
