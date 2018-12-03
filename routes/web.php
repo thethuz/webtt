@@ -82,7 +82,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/{id}','UserController@showProfile');
 
 //Routes for questions
-Route::get('/questions/list','QuestionsController@showQuestionList');
+Route::get('/questions/list','QuestionsController@showQuestionList'); //change to API
 Route::get('/questions/ask', 'QuestionsController@showAsk');
 Route::post('/questions/ask', 'QuestionsController@ask')->name('questions.ask');
 Route::post('/questions/answer', 'QuestionsController@answer')->name('questions.answer');
@@ -90,6 +90,7 @@ Route::post('/questions/answer', 'QuestionsController@answer')->name('questions.
 //Show information form
 Route::get('/questions/{id}/', 'QuestionsController@showQuestionDetail')->name('questions.show');
 Route::get('/questions/{id}/edit','QuestionsController@showEditQuestion');
+Route::get('/answers/{id}', 'QuestionsController@getAnswersById');
 
 //Update data
 Route::post('/user/upload_avatar', 'UserController@uploadAvatar');
@@ -102,5 +103,6 @@ Route::get('/user/getCurrentUserId','UserController@getCurrentUserId');
 
 Route::get('/tag/{tag}','QuestionsController@showQuestionByTag');
 Route::post('/vote_action', 'QuestionsController@voteAction')->middleware('auth');
+Route::post('/accept_answer', 'QuestionController@acceptAnswer')->middleware('auth');
 
 Route::get('/answers/{id}', 'QuestionsController@getAnswersById');

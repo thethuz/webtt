@@ -18449,7 +18449,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this5 = this;
 
             axios.get('/answers/' + this.question_id).then(function (res) {
-
                 res.data.map(function (value, key) {
                     value.showAddComment = false;
                 });

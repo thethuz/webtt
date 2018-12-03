@@ -22,8 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //});
 
 Route::group(['prefix' => 'v1', 'as' => "api."], function () {
-    Route::resource('answers', 'AnswersController');
-    Route::resource('questions', 'QuestionsController')->names(['update'=>'questions.update']);
+    Route::resource('questions', 'QuestionsController')->names(['update' => 'questions.update']);
 });
 
 Route::group(['prefix' => 'api/v1'], function () {
