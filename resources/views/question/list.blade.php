@@ -26,7 +26,7 @@
 
               </div>
               <div class="col-lg-10">
-                <a href="/questions/{{ $question->id }}/{{ $question->slug }}" class="title">{{ $question->title }}</a>
+                <a href="/questions/{{ $question->id }}" class="title">{{ $question->title }}</a>
                 <div class="excerpt">{!! mb_strimwidth($question->content, 0, 200, "...") !!}</div>
                 <div class="tag-list">
 
@@ -83,7 +83,7 @@
 
             @foreach ($newest_questions as $question)
             <div class="item">
-              <a href="/questions/{{ $question->id }}/{{ $question->slug }}" class="title">{{ $question->title }}</a>
+              <a href="/questions/{{ $question->id }}/" class="title">{{ $question->title }}</a>
             </div>
             @endforeach
 

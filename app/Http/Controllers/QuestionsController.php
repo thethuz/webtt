@@ -12,6 +12,7 @@ use Carbon;
 
 use Config;
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Response;
 use DB;
 
@@ -95,7 +96,7 @@ class QuestionsController extends Controller
 
     }
 
-    // question/{{id}}
+    // api.v1.question
     public function show($id)
     {
         $question = Question::find($id);
@@ -192,7 +193,6 @@ class QuestionsController extends Controller
     public function showEditQuestion($id) {
 
       $question = Question::find($id);
-
       if (!Auth::check() || (Auth::user()->id != $question->created_by)) {
         return redirect('/questions/list');
       }
@@ -206,9 +206,9 @@ class QuestionsController extends Controller
       return view('question.edit_question', ['question' => $question]);
     }
 
-    public function editQuestion() {
+    public function update($id) {
 
-      $id = Input::get('id');
+//      $id = Input::get('id');
 
       $question = Question::find($id);
 
@@ -218,6 +218,7 @@ class QuestionsController extends Controller
 
       $question->content = Input::get('content');
 
+      Log::info("1: FDF");
       $question->save();
 
       foreach ($question->tag as $key => $value) {
@@ -231,10 +232,7 @@ class QuestionsController extends Controller
         $tag->save();
       }
 
-      $question_url = Config::get('constants.QUESTION_URL') . '/' . $question->id . '/' . $question->slug ;
-
-      return redirect($question_url);
-
+      return \Redirect::route('questions.show', array($id));
     }
 
     //TODO
@@ -278,7 +276,7 @@ class QuestionsController extends Controller
     }
 
 
-    public function showQuestionDetail($id,$slug) {
+    public function showQuestionDetail($id) {
 
     	$currentUserId = 0;
 

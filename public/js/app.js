@@ -49099,7 +49099,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "text-brown",
     attrs: {
-      "href": '/question/' + _vm.question.id + '/edit'
+      "href": '/questions/' + _vm.question.id + '/edit'
     }
   }, [_vm._v("edit")])]), _vm._v(" "), _c('div', {
     staticClass: "question-author-info pull-right"

@@ -52,20 +52,6 @@ Route::resource('/my', 'MyController');
 // class MyPersonalClass{
 //    public $foo = 'bar';
 // }
-Route::get('/myclass', 'ImplicitController@index');
-
-Route::get('/foo/barc', 'UriController@index');
-Route::post('/user/register', array('uses' => 'UserRegistration@postRegister'));
-
-Route::get('/cookie/set', 'CookieController@setCookie');
-Route::get('/cookie/get', 'CookieController@getCookie');
-Route::get('/attach/cookie', 'CookieController@attachCookieAndHeader');
-Route::get('/attach/json', 'CookieController@attachJSON');
-
-Route::get('/test/template', 'TestController@index');
-Route::get('/test', ['as' => 'testing', function () {
-    return view('test');
-}]);
 
 Route::get('redirect', function () {
     return redirect()->route('test');
@@ -74,14 +60,6 @@ Route::get('rr', 'RedirectController@index');
 Route::get('/redirectcontroller', function () {
     return redirect()->action('RedirectController@index');
 });
-
-Route::get('view-records', 'StudViewController@index');
-Route::get('insert', 'StudInsertController@insertform');
-Route::post('create', 'StudInsertController@insert');
-
-Route::get('edit-records', 'StudUpdateController@index');
-Route::get('edit/{id}', 'StudUpdateController@show');
-Route::post('edit/{id}', 'StudUpdateController@edit');
 
 Route::get('delete-records', 'StudDeleteController@index');
 Route::get('delete/{id}', 'StudDeleteController@destroy');
@@ -107,8 +85,11 @@ Route::get('/users/{id}','UserController@showProfile');
 Route::get('/questions/list','QuestionsController@showQuestionList');
 Route::get('/questions/ask', 'QuestionsController@showAsk');
 Route::post('/questions/ask', 'QuestionsController@ask')->name('questions.ask');
-Route::post('/questions/answer', 'QuestionController@answer')->name('questions.answer');
-Route::get('/questions/{id}/{slug}', 'QuestionsController@showQuestionDetail');
+Route::post('/questions/answer', 'QuestionsController@answer')->name('questions.answer');
+
+//Show information form
+Route::get('/questions/{id}/', 'QuestionsController@showQuestionDetail')->name('questions.show');
+Route::get('/questions/{id}/edit','QuestionsController@showEditQuestion');
 
 //Update data
 Route::post('/user/upload_avatar', 'UserController@uploadAvatar');

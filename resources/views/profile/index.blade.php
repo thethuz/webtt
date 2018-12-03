@@ -72,7 +72,7 @@
                     <h3>Posted these questions</h3>
                     @foreach ($questions as $question)
                         <div>
-                            <a href="/question/{{ $question->id }}/{{ $question->slug }}">{{ $question->title }}</a>
+                            <a href="/questions/{{ $question->id }}">{{ $question->title }}</a>
                         </div>
                     @endforeach
                 </div>
@@ -80,7 +80,7 @@
                     <h3>Answered on these questions</h3>
                     @foreach ($answers as $answers)
                         <div>
-                            <a href="/question/{{ $answers->id }}/{{ $answers->slug }}">{{ $answers->title }}</a>
+                            <a href="/questions/{{ $answers->id }}/{{ $answers->slug }}">{{ $answers->title }}</a>
                         </div>
                     @endforeach
                 </div>

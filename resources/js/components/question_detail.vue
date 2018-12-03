@@ -20,7 +20,7 @@
                 </div>
                 <br/>
                 <div>
-                    <a :href="'/question/' + question.id + '/edit'" class="text-brown" v-show="userId == question.asked_user_id">edit</a>
+                    <a :href="'/questions/' + question.id + '/edit'" class="text-brown" v-show="userId == question.asked_user_id">edit</a>
                     <!-- <a href="" class="text-brown" v-show="userId == question.asked_user_id">delete</a> -->
                 </div>
                 <div class="question-author-info pull-right">

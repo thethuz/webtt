@@ -213,8 +213,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'TestFacades' => App\Test\Facades\TestFacades::class,
-        'Image' => Intervention\Image\Facades\Image::class
-        
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Carbon' => 'Carbon\Carbon'
     ],
 
 
