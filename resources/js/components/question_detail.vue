@@ -160,7 +160,7 @@
                 });
             },
             fetchAnswers() {
-                axios.get('/api/v1/answers/' + this.question_id)
+                axios.get('/answers/' + this.question_id)
                     .then((res) => {
 
                         res.data.map(function(value, key) {

@@ -103,3 +103,4 @@ Route::get('/user/getCurrentUserId','UserController@getCurrentUserId');
 Route::get('/tag/{tag}','QuestionsController@showQuestionByTag');
 Route::post('/vote_action', 'QuestionsController@voteAction')->middleware('auth');
 
+Route::get('/answers/{id}', 'QuestionsController@getAnswersById');

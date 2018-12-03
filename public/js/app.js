@@ -18448,7 +18448,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchAnswers: function fetchAnswers() {
             var _this5 = this;
 
-            axios.get('/api/v1/answers/' + this.question_id).then(function (res) {
+            axios.get('/answers/' + this.question_id).then(function (res) {
 
                 res.data.map(function (value, key) {
                     value.showAddComment = false;
