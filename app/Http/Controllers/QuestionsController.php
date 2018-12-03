@@ -56,7 +56,7 @@ class QuestionsController extends Controller
         $tag->save();
       }
 
-    	$question_url = Config::get('constants.QUESTION_URL') . '/' . $question->id . '/' . $question->slug ;
+    	$question_url = Config::get('constants.QUESTION_URL') . '/' . $question->id ;
 
     	return redirect($question_url);
     }
@@ -74,7 +74,7 @@ class QuestionsController extends Controller
       $answer->created_by = Auth::user()->id;
       $answer->save();
 
-      $question_url = Config::get('constants.QUESTION_URL') . '/' . $question->id . '/' . $question->slug ;
+      $question_url = Config::get('constants.QUESTION_URL') . '/' . $question->id ;
 
       return redirect($question_url);
     }
@@ -244,8 +244,7 @@ class QuestionsController extends Controller
       $answer->save();
 
       $question = Question::find($answer->question_id);
-      $question_url = Config::get('constants.QUESTION_URL') . '/' . $question->id . '/' . $question->slug ;
-
+      $question_url = Config::get('constants.QUESTION_URL') . '/' . $question->id ;
       return redirect($question_url);
 
     }
