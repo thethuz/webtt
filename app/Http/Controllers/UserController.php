@@ -9,6 +9,7 @@ use App\Question;
 use App\Answer;
 
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Image;
 use Response;
 
@@ -45,7 +46,9 @@ class UserController extends Controller
         foreach ($answers_by_user as $key => $value) {
             $answers[$value->question_id] = Question::find($value->question_id);
         }
-
+        foreach ($answers as $key => $value){
+            Log::info($value." ".$key." ".sizeof($answers));
+        }
         return view('profile.index', ['user' => Auth::user(), 'questions' => $questions, 'answers' => $answers] );
     }
 
