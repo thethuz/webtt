@@ -80,7 +80,7 @@
                     <h3>Answered on these questions</h3>
                     @foreach ($answers as $answers)
                         <div>
-                            <a href="/questions/{{ $answers->id }}/{{ $answers->slug }}">{{ $answers->title }}</a>
+                            <a href="/questions/{{ $answers->id }}">{{ $answers->title }}</a>
                         </div>
                     @endforeach
                 </div>

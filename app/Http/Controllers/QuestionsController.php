@@ -428,7 +428,6 @@ class QuestionsController extends Controller
     public function acceptAnswer() {
       $answer_id = Input::get('answer_id');
       $question_id = Input::get('question_id');
-
       $question = Question::find($question_id);
       $anwser = Answer::find($answer_id);
 

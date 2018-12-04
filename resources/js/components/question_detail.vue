@@ -166,7 +166,7 @@
                             value.showAddComment = false;
                         });
                         this.answers = res.data;
-
+                        console.log(this.answers[0].user.id);
                     });
             },
             resetUpVoteDownVote() {

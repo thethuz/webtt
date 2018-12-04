@@ -18452,8 +18452,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 res.data.map(function (value, key) {
                     value.showAddComment = false;
                 });
-
                 _this5.answers = res.data;
+                console.log(_this5.answers[0].user.id);
             });
         },
         resetUpVoteDownVote: function resetUpVoteDownVote() {

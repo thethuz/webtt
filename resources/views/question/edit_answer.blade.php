@@ -1,4 +1,8 @@
 @extends('layouts.app')
+
+@section('script')
+    <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
+@endsection
 @section('content')
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
@@ -16,7 +20,7 @@
 
             <input type="hidden" name="id" value="{{ $answer->id }}">
             <div class="form-group">
-                <textarea name="content" class="form-control" rows="15" required>{{ $answer->content }}</textarea>
+                <textarea name="content" class="ckeditor" rows="15" required>{{ $answer->content }}</textarea>
             </div>        
 
             <div class="form-group">

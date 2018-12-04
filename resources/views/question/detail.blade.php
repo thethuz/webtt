@@ -29,7 +29,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-lg-8 left-side" id="app">
-                <question-detail question_id = "{{ $question->id }}"></question-detail>
+                <question-detail question_id="{{ $question->id }}"></question-detail>
 
                 @if (Auth::check())
                     <div class="row post-answer">
@@ -38,7 +38,7 @@
                             <input type="hidden" name="question_id" value="{{ $question->id }}">
                             <textarea class="ckeditor" name="answer"></textarea>
                             <br/>
-                            <input type="submit" class="btn btn-primary" value="Post Your Answer" />
+                            <input type="submit" class="btn btn-primary" value="Post Your Answer"/>
                         </form>
                     </div>
                 @endif
@@ -63,7 +63,6 @@
 
             </div>
         </div>
-
-        <div>
+    </div>
 
 @endsection

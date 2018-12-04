@@ -27,7 +27,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ url('/') }}">LaraOverflow</a>
+        <a class="navbar-brand" href="{{ url('/') }}">FutureCareer</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -70,7 +70,7 @@
     <footer>
       <div class="row">
         <div class="col-lg-12">
-          <p>2018</p>
+          <p>FutureCareer by Nam Nguyen Tran, Thu Nguyen The</p>
         </div>
       </div>
     </footer>

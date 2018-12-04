@@ -93,7 +93,7 @@ Route::get('/questions/{id}/edit','QuestionsController@showEditQuestion');
 Route::get('/answers/{id}', 'QuestionsController@getAnswersById');
 
 //Update data
-Route::post('/user/upload_avatar', 'UserController@uploadAvatar');
+Route::post('/er/upload_avatar', 'UserController@uploadAvatar');
 Route::post('/user/update_profile', 'UserController@updateProfile');
 
 // Achieve constant have config data
@@ -102,7 +102,9 @@ Route::get('/user/isAuthenticated', 'UserController@isAuthenticated');
 Route::get('/user/getCurrentUserId','UserController@getCurrentUserId');
 
 Route::get('/tag/{tag}','QuestionsController@showQuestionByTag');
-Route::post('/vote_action', 'QuestionsController@voteAction')->middleware('auth');
-Route::post('/accept_answer', 'QuestionController@acceptAnswer')->middleware('auth');
+Route::post('/vote_action', 'QuestionsConwtroller@voteAction')->middleware('auth');
+Route::post('/accept_answer', 'QuestionsController@acceptAnswer')->middleware('auth');
 
 Route::get('/answers/{id}', 'QuestionsController@getAnswersById');
+Route::get('/answer/{id}/edit','QuestionsController@showEditAnswer');
+Route::post('/answer/edit', 'QuestionsController@editAnswer')->name('answer.edit');
