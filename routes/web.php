@@ -91,9 +91,10 @@ Route::post('/questions/answer', 'QuestionsController@answer')->name('questions.
 Route::get('/questions/{id}/', 'QuestionsController@showQuestionDetail')->name('questions.show');
 Route::get('/questions/{id}/edit','QuestionsController@showEditQuestion');
 Route::get('/answers/{id}', 'QuestionsController@getAnswersById');
+Route::post('/questions/comment', 'QuestionsController@comment')->name('questions.comment');
 
 //Update data
-Route::post('/er/upload_avatar', 'UserController@uploadAvatar');
+Route::post('/user/upload_avatar', 'UserController@uploadAvatar');
 Route::post('/user/update_profile', 'UserController@updateProfile');
 
 // Achieve constant have config data

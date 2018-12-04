@@ -30,7 +30,7 @@
             </div>        
 
             <div class="form-group">
-                <input type="text" placeholder="Tag" name="tag" class="form-control" data-role="tagsinput">
+                <input type="text" placeholder="Tag" name="tag" class="form-control" data-role="tagsinput" required>
             </div>
 
             <div class="form-group">
