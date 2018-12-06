@@ -9,6 +9,7 @@ use App\Question;
 use App\Answer;
 
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Image;
 use Response;
 
@@ -43,7 +44,12 @@ class UserController extends Controller
 
         $answers = [];
         foreach ($answers_by_user as $key => $value) {
-            $answers[$value->question_id] = Question::find($value->question_id);
+            $question = Question::find($value->question_id);
+            if ($question){
+                $answers[$value->question_id] = $question;
+            } else {
+                Log::info($value->question_id);
+            }
         }
 
         return view('profile.index', ['user' => Auth::user(), 'questions' => $questions, 'answers' => $answers] );

@@ -80,6 +80,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users/{id}','UserController@showProfile');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //Routes for questions
 Route::get('/questions/list','QuestionsController@showQuestionList'); //change to API
