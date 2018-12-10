@@ -32,8 +32,19 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" value="{{ $question->tags }}" name="tag" class="form-control"
-                           data-role="tagsinput">
+                    {{--<input type="text" value="{{ $question->tags }}" name="tag" class="form-control"--}}
+                    {{--data-role="tagsinput">--}}
+                    <p>Tag for your questions {{$question->tags}}</p>
+                    <select name="tag">
+                        @foreach ($alltags as $tag)
+                            @if (strcmp(strtolower($tag),$question->tags)==0)
+                                <option value="{{$tag}}" selected>{{$tag}}</option>
+                            @else
+                                <option value="{{$tag}}">{{$tag}}</option>
+                            @endif
+                        @endforeach
+                        {{--<option value="volvo">Volvo</option>--}}
+                    </select>
                 </div>
 
                 <div class="form-group">

@@ -27,20 +27,25 @@
             <div class="form-group">
                 <textarea name="content" class="form-control" rows="15" required>                
                 </textarea>
-            </div>        
-
-            <div class="form-group">
-                <input type="text" placeholder="Tag" name="tag" class="form-control" data-role="tagsinput" required>
             </div>
 
+            <div class="form-group">
+                <p>Tag for your questions</p>
+                <select name="tag">
+                    @foreach ($tags as $tag)
+                        <option value="{{$tag}}">{{$tag}}</option>
+                    @endforeach
+                </select>
+                {{--<input type="text" placeholder="Tag" name="tag" class="form-control" data-role="tagsinput" required>--}}
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">
                     Post your question
                 </button>
-            </div>        
+            </div>
         </form>
     </div>
-    
+
 </div>
-          
+
 @endsection

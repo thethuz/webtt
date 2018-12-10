@@ -94,9 +94,10 @@ Route::get('/questions/{id}/edit','QuestionsController@showEditQuestion');
 Route::get('/answers/{id}', 'QuestionsController@getAnswersById');
 Route::post('/questions/comment', 'QuestionsController@comment')->name('questions.comment');
 
-//Update data
+//User actions
 Route::post('/user/upload_avatar', 'UserController@uploadAvatar');
 Route::post('/user/update_profile', 'UserController@updateProfile');
+Route::get('/user/{id}/view', 'UserController@viewOtherProfile');
 
 // Achieve constant have config data
 Route::get('/api/get_constant','ConstantAPIController@get');
@@ -104,7 +105,7 @@ Route::get('/user/isAuthenticated', 'UserController@isAuthenticated');
 Route::get('/user/getCurrentUserId','UserController@getCurrentUserId');
 
 Route::get('/tag/{tag}','QuestionsController@showQuestionByTag');
-Route::post('/vote_action', 'QuestionsConwtroller@voteAction')->middleware('auth');
+Route::post('/vote_action', 'QuestionsController@voteAction')->middleware('auth');
 Route::post('/accept_answer', 'QuestionsController@acceptAnswer')->middleware('auth');
 
 Route::get('/answers/{id}', 'QuestionsController@getAnswersById');

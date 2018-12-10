@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -19,6 +20,8 @@ class UserController extends Controller
 
     public function viewOtherProfile($id) {
 
+        $user = User::find($id);
+        $username = $user->name;
         $questions = Question::where('created_by', '=' , $id)
             ->paginate(10);
 
@@ -31,7 +34,7 @@ class UserController extends Controller
             $answers[$value->question_id] = Question::find($value->question_id);
         }
 
-        return view('profile.view_other', ['questions' => $questions, 'answers' => $answers] );
+        return view('profile.view_other', ['questions' => $questions, 'answers' => $answers, 'username' => $username] );
     }
 
     public function showProfile() {
