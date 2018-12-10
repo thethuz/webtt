@@ -19,7 +19,12 @@ class UserController extends Controller
     //
 
     public function viewOtherProfile($id) {
-
+        if (Auth::user()){
+            if($id == Auth::user()->id){
+                Log::info('aa');
+                return redirect('/users/'.$id);
+            }
+        }
         $user = User::find($id);
         $username = $user->name;
         $questions = Question::where('created_by', '=' , $id)
