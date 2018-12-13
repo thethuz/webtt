@@ -21,7 +21,6 @@ class UserController extends Controller
     public function viewOtherProfile($id) {
         if (Auth::user()){
             if($id == Auth::user()->id){
-                Log::info('aa');
                 return redirect('/users/'.$id);
             }
         }
