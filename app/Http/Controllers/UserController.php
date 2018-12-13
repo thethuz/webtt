@@ -2,28 +2,100 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Auth;
+use Illuminate\Support\Facades\Input;
 
+use App\Question;
+use App\Answer;
+
+use Auth;
+use Illuminate\Support\Facades\Log;
+use Image;
+use Response;
 
 class UserController extends Controller
 {
-    public function __construct(){
-    	$this->middleware('Second');
+    //
+
+    public function viewOtherProfile($id) {
+        if (Auth::user()){
+            if($id == Auth::user()->id){
+                return redirect('/users/'.$id);
+            }
+        }
+        $user = User::find($id);
+        $username = $user->name;
+        $questions = Question::where('created_by', '=' , $id)
+            ->paginate(10);
+
+        $answers_by_user = Answer::where('created_by', '=' , $id)
+            ->where('question_id', '<>', 0)
+            ->paginate(10);
+
+        $answers = [];
+        foreach ($answers_by_user as $key => $value) {
+            $answers[$value->question_id] = Question::find($value->question_id);
+        }
+
+        return view('profile.view_other', ['questions' => $questions, 'answers' => $answers, 'username' => $username] );
     }
-  	public function showPath(Request $request){
-  		$uri = $request->path();
-  		echo "<br>URI: ".$uri;
 
-  		$url = $request->url();
-  		echo "<br>URL: ".$url;
-
-  		$method = $request->method();
-  		echo "<br>Method: ".$method;
-  	}
-  	public function showProfile($id){
+    public function showProfile() {
         $user = Auth::user();
+        $questions = Question::where('created_by', '=' ,Auth::user()->id)
+            ->paginate(10);
+
+        $answers_by_user = Answer::where('created_by', '=' , Auth::user()->id)
+            ->paginate(10);
+
+        $answers = [];
+        foreach ($answers_by_user as $key => $value) {
+            $question = Question::find($value->question_id);
+            if ($question){
+                $answers[$value->question_id] = $question;
+            } else {
+                Log::info($value->question_id);
+            }
+        }
+
+        return view('profile.index', ['user' => Auth::user(), 'questions' => $questions, 'answers' => $answers] );
+    }
+
+    public function uploadAvatar(Request $request) {
+
+        // Handle the user upload of avatar
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save( public_path('/uploads/avatars/' . $filename ) );
+
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
+        }
+
+        return redirect('/users/' . Auth::user()->id );
+
+    }
+
+    public function isAuthenticated() {
+        return Response::json(Auth::check());
+    }
+
+    public function getCurrentUserId() {
+        return Response::json(Auth::user()->id);
+    }
+
+    public function updateProfile() {
+
+        $user = Auth::user();
+        $user->name = Input::get("display_name");
+        $user->location = Input::get("location");
+        $user->title = Input::get("title");
+        $user->save();
+
+        return redirect('/users/' . Auth::user()->id );
+
     }
 }

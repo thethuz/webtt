@@ -20,12 +20,19 @@ class Answer extends Model
     //     return $this->hasMany('App\Answer','answer_id');
     // }
 
-    public function user(){
-        return $this->belongsTo('App\User','user_id', 'id');
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'created_by');
     }
 
-    public function question()
+
+    public function children()  
     {
-        return $this->belongsTo('App\Question','question_id','id');
+        return $this->hasMany('App\Answer', 'answer_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Answer', 'answer_id');
     }
 }

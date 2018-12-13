@@ -29,7 +29,8 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-lg-8 left-side" id="app">
-                <question-detail question_id = "1"></question-detail>
+                <question-detail question_id="{{ $question->id }}"></question-detail>
+
                 @if (Auth::check())
                     <div class="row post-answer">
                         <form method="POST" action="{{ route('questions.answer') }}">
@@ -37,7 +38,7 @@
                             <input type="hidden" name="question_id" value="{{ $question->id }}">
                             <textarea class="ckeditor" name="answer"></textarea>
                             <br/>
-                            <input type="submit" class="btn btn-primary" value="Post Your Answer" />
+                            <input type="submit" class="btn btn-primary" value="Post Your Answer"/>
                         </form>
                     </div>
                 @endif
@@ -45,7 +46,7 @@
             </div>
             <div class="col-lg-4 right-side">
                 <div class="info">
-                    {{--<p><span class="text-grey">asked:</span> {{ $question->created_at->diffForHumans() }}</p>--}}
+                    <p><span class="text-grey">asked:</span> {{ $question->created_at->diffForHumans() }}</p>
                     <p><span class="text-grey">viewed:</span> {{ number_format($question->views,0) }} times</p>
                 </div>
 
@@ -62,7 +63,6 @@
 
             </div>
         </div>
-
-        <div>
+    </div>
 
 @endsection

@@ -6,48 +6,46 @@
     <script src="{{ asset('plugins/tagsinput/bootstrap-tagsinput.js') }}"></script>
 @endsection
 @section('content')
-    <!-- Page Heading/Breadcrumbs -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Ask Question</h1>
-        </div>
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Ask Question</h1>
     </div>
-    <!-- /.row -->
+</div>
+<!-- /.row -->
 
-    <!-- Content Row -->
-    <div class="row">
-        <div class="col-lg-8">
-            <form method="POST" action="{{ route('questions.ask') }}">
-                {{ csrf_field() }}
+<!-- Content Row -->
+<div class="row">
+    <div class="col-lg-8">
+        <form method="POST" action="{{ route('questions.ask') }}">
+            {{ csrf_field() }}
 
-                <div class="form-group">
-                    <input id="title" type="text" placeholder="What's your question ?" class="form-control" name="title"
-                           value="{{ old('title') }}" required autofocus>
-                </div>
+            <div class="form-group">
+                <input id="title" type="text" placeholder="What's your question ?" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
+            </div>
 
-                <div class="form-group">
-                <textarea name="content" id="mytextarea" class="form-control" rows="15" required>
+            <div class="form-group">
+                <textarea name="content" class="form-control" rows="15" required>                
                 </textarea>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <input type="text" placeholder="Tag" name="tag" class="form-control" data-role="tagsinput">
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        Post your question
-                    </button>
-                </div>
-            </form>
-        </div>
-
+            <div class="form-group">
+                <p>Tag for your questions</p>
+                <select name="tag">
+                    @foreach ($tags as $tag)
+                        <option value="{{$tag}}">{{$tag}}</option>
+                    @endforeach
+                </select>
+                {{--<input type="text" placeholder="Tag" name="tag" class="form-control" data-role="tagsinput" required>--}}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    Post your question
+                </button>
+            </div>
+        </form>
     </div>
-    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'>
-    </script>
-    <script>
-        tinymce.init({
-            selector: '#mytextarea'
-        });
-    </script>
+
+</div>
+
 @endsection

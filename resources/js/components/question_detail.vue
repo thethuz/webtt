@@ -20,7 +20,7 @@
                 </div>
                 <br/>
                 <div>
-                    <a :href="'/question/' + question.id + '/edit'" class="text-brown" v-show="userId == question.asked_user_id">edit</a>
+                    <a :href="'/questions/' + question.id + '/edit'" class="text-brown" v-show="userId == question.asked_user_id">edit</a>
                     <!-- <a href="" class="text-brown" v-show="userId == question.asked_user_id">delete</a> -->
                 </div>
                 <div class="question-author-info pull-right">
@@ -126,7 +126,7 @@
                 userId:0
             };
         },
-        created() {
+        mounted() {
             this.fetchQuestionData();
             this.fetchAnswers();
             this.fetchConstants();
@@ -154,20 +154,19 @@
                 });
             },
             fetchQuestionData() {
-                axios.get('/question/' + this.question_id).then((res) => {
+                axios.get('/api/v1/questions/' + this.question_id).then((res) => {
                     this.question = res.data;
+                    // console.log(question);
                 });
             },
             fetchAnswers() {
                 axios.get('/answers/' + this.question_id)
                     .then((res) => {
-
                         res.data.map(function(value, key) {
                             value.showAddComment = false;
                         });
-
                         this.answers = res.data;
-
+                        console.log(this.answers[0].user.id);
                     });
             },
             resetUpVoteDownVote() {
