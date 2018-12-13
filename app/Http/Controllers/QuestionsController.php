@@ -90,7 +90,7 @@ class QuestionsController extends Controller
         $answer = new Answer;
         $answer->content = Input::get("content");
         $attached_answer = Answer::find($answer_id);
-        $answer->question_id = $attached_answer->question_id;
+        $answer->question_id = 0;
         $answer->answer_id = $answer_id;
         $answer->status = 1;
         $answer->created_by = Auth::user()->id;

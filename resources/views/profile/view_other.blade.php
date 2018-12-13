@@ -16,7 +16,7 @@
             <h3>Posted these questions</h3>
             @foreach ($questions as $question)
                 <div>
-                    <a href="/question/{{ $question->id }}">{{ $question->title }}</a>
+                    <a href="/questions/{{ $question->id }}">{{ $question->title }}</a>
                 </div>
             @endforeach
         </div>
@@ -25,7 +25,7 @@
             @foreach ($answers as $answer)
                 
                 <div>
-                    <a href="/question/{{ $answer->id }}/{{ $answer->slug }}">
+                    <a href="/questions/{{ $answer->id }}">
                         {{ $answer->title }}
                     </a>
                 </div>
